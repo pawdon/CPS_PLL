@@ -1,6 +1,8 @@
 import numpy as np
 import math
 import time
+import pll
+import timer
 
 
 def get_data(filename='pilot.csv'):
@@ -30,26 +32,26 @@ def run():
     freq = 0.4775
     alpha = 0.0100
     beta = 2.5000e-05
+    time_measurer = timer.FunTimeMeasurer()
 
     full = get_data(filename="pilot.csv")
     blocks = split_data(full, N)
     whole_carr2 = np.array([])
     whole_carr3 = np.array([])
     last_theta = 0.0
-    theta = [0.0 for _ in range(N + 1)]
-    carr2 = [1.0 for _ in range(N)]
-    carr3 = [1.0 for _ in range(N)]
+    theta, carr2, carr3 = pll.get_zeros_lists(N)
     whole_time = 0
     print("START")
     for b in blocks:
-        freq, last_theta, carr2, carr3 = pll_naive(b.tolist(), N, alpha, beta, freq, last_theta, theta, carr2, carr3)
+        freq, last_theta, carr2, carr3 = time_measurer.run(pll.pll_naive,
+                                                           b.tolist(), N, alpha, beta, freq, last_theta, theta, carr2, carr3)
         whole_carr2 = np.append(whole_carr2, np.array(carr2))
         whole_carr3 = np.append(whole_carr3, np.array(carr3))
-    print("Time", whole_time)
+    print("Total time", time_measurer.get_total_time())
+    print("Average time", time_measurer.get_average_time())
     ref = get_data(filename="nosna.csv")
     diff = ref - whole_carr2
     print("sum", np.sum(diff))
-    print("sum^2", np.sum(diff * diff))
     print("diff", diff)
 
 
