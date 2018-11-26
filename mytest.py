@@ -2,6 +2,7 @@ import numpy as np
 import math
 import time
 import pll
+import cpll
 import timer
 
 
@@ -33,24 +34,15 @@ def run():
     alpha = 0.0100
     beta = 2.5000e-05
     time_measurer = timer.FunTimeMeasurer()
-    default_containers = [pll.get_default_lists, pll.get_default_np_arrays]
-    func = [pll.pll_naive,
-            pll.pll_numpy_ver1,
-            pll.pll_numpy_ver2,
-            pll.pll_numpy_ver3,
-            pll.pll_numpy_ver4,
-            pll.pll_numpy_ver5]
+    pll_loop = pll.PllNumPy1(freq=freq, alpha=alpha, beta=beta, N=N)
 
     full = get_data(filename="pilot.csv")
     blocks = split_data(full, N)
     whole_carr2 = np.array([])
     whole_carr3 = np.array([])
-    latest_theta = 0.0
-    theta, carr2, carr3 = default_containers[1](N)
     print("START")
     for b in blocks:
-        freq, latest_theta, carr2, carr3 = time_measurer.run(func[1],
-                                                             b, N, alpha, beta, freq, latest_theta, carr2, carr3, theta)
+        carr2, carr3 = time_measurer.run(pll_loop.process, b)
         whole_carr2 = np.append(whole_carr2, np.array(carr2))
         whole_carr3 = np.append(whole_carr3, np.array(carr3))
     print("Total time", time_measurer.get_total_time())
@@ -88,5 +80,45 @@ def run_test():
         print("\t", d)
 
 
+def test_cpll():
+    N = 4
+    freq = 0.4775
+    alpha = 0.0100
+    beta = 2.5000e-05
+
+    synch = cpll.CPllState()
+    synch.freq = freq
+    synch.latest_theta = 0
+    synch.alpha = alpha
+    synch.beta = beta
+    synch.N = N
+
+    carr2 = np.ones(shape=N)
+    carr3 = np.ones(shape=N)
+    pilot = np.array([i for i in range(N)], dtype=np.float64)
+    lut_sin = np.array([i + 100 for i in range(N)], dtype=np.float64)
+    lut_cos = np.array([i + 200 for i in range(N)], dtype=np.float64)
+
+    print("synch", synch.freq, synch.latest_theta, synch.alpha, synch.beta, synch.N)
+    print("carr2", carr2)
+    print("carr3", carr3)
+    print("pilot", pilot)
+
+    synch = cpll.process1(pilot, carr2, carr3, synch)
+
+    print("synch", synch.freq, synch.latest_theta, synch.alpha, synch.beta, synch.N)
+    print("carr2", carr2)
+    print("carr3", carr3)
+    print("pilot", pilot)
+
+    synch = cpll.process2(pilot, carr2, carr3, synch, lut_cos, lut_sin)
+
+    print("synch", synch.freq, synch.latest_theta, synch.alpha, synch.beta, synch.N)
+    print("carr2", carr2)
+    print("carr3", carr3)
+    print("pilot", pilot)
+
+
 if __name__ == "__main__":
     run()
+    #test_cpll()
