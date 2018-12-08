@@ -158,7 +158,17 @@ class PllC2(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(cpll.CPllState, freq, alpha, beta, N)
 
+    # math.h cos
+    def process(self, pilot):
+        self.state = cpll.process2(pilot, self.carr2, self.carr3, self.state)
+        return self.carr2, self.carr3
+
+
+class PllC3(IPllNumPy):
+    def __init__(self, freq, alpha, beta, N):
+        super().__init__(cpll.CPllState, freq, alpha, beta, N)
+
     # Lut.cos_array
     def process(self, pilot):
-        self.state = cpll.process2(pilot, self.carr2, self.carr3, self.state, Lut.cos_array, Lut.sin_array)
+        self.state = cpll.process3(pilot, self.carr2, self.carr3, self.state, Lut.cos_array, Lut.sin_array)
         return self.carr2, self.carr3
