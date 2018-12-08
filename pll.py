@@ -22,6 +22,10 @@ class IPll:
         self.state.beta = beta
         self.state.N = N
 
+    @staticmethod
+    def info():
+        return "PLL abstract"
+
     def process(self, pilot):
         return None, None
 
@@ -31,6 +35,10 @@ class PllNaive(IPll):
         super().__init__(PllState, freq, alpha, beta, N)
         self.carr2 = [1.0 for _ in range(N)]
         self.carr3 = [1.0 for _ in range(N)]
+
+    @staticmethod
+    def info():
+        return "PLL naive"
 
     def process(self, pilot):
         for n in range(self.state.N):
@@ -48,10 +56,18 @@ class IPllNumPy(IPll):
         self.carr2 = np.ones(shape=N, dtype=np.float)
         self.carr3 = np.ones(shape=N, dtype=np.float)
 
+    @staticmethod
+    def info():
+        return "PLL numpy abstract"
+
 
 class PllNumPy0(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(PllState, freq, alpha, beta, N)
+
+    @staticmethod
+    def info():
+        return "PLL numpy 0"
 
     # carr[n] = math.cos
     def process(self, pilot):
@@ -68,6 +84,10 @@ class PllNumPy1(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(PllState, freq, alpha, beta, N)
 
+    @staticmethod
+    def info():
+        return "PLL numpy 1"
+
     # carr.itemset(n, math.cos
     def process(self, pilot):
         for n in range(self.state.N):
@@ -82,6 +102,10 @@ class PllNumPy1(IPllNumPy):
 class PllNumPy2(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(PllState, freq, alpha, beta, N)
+
+    @staticmethod
+    def info():
+        return "PLL numpy 2"
 
     # carr.itemset(n, np.cos
     def process(self, pilot):
@@ -99,6 +123,10 @@ class PllNumPy3(IPll):
         super().__init__(PllState, freq, alpha, beta, N)
         self.theta = np.zeros(shape=N, dtype=np.float)
 
+    @staticmethod
+    def info():
+        return "PLL numpy 3"
+
     # carr = np.cos
     def process(self, pilot):
         for n in range(self.state.N):
@@ -114,6 +142,10 @@ class PllNumPy3(IPll):
 class PllNumPy4(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(PllState, freq, alpha, beta, N)
+
+    @staticmethod
+    def info():
+        return "PLL numpy 4"
 
     # nditer
     # c[...] = math.cos
@@ -133,6 +165,10 @@ class PllNumPy5(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(PllState, freq, alpha, beta, N)
 
+    @staticmethod
+    def info():
+        return "PLL numpy 5"
+
     # .itemset(n, Lut.cos
     def process(self, pilot):
         for n in range(self.state.N):
@@ -148,6 +184,10 @@ class PllC1(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(cpll.CPllState, freq, alpha, beta, N)
 
+    @staticmethod
+    def info():
+        return "PLL C 1"
+
     # math.h cos
     def process(self, pilot):
         self.state = cpll.process1(pilot, self.carr2, self.carr3, self.state)
@@ -158,6 +198,10 @@ class PllC2(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(cpll.CPllState, freq, alpha, beta, N)
 
+    @staticmethod
+    def info():
+        return "PLL C 2"
+
     # math.h cos
     def process(self, pilot):
         self.state = cpll.process2(pilot, self.carr2, self.carr3, self.state)
@@ -167,6 +211,10 @@ class PllC2(IPllNumPy):
 class PllC3(IPllNumPy):
     def __init__(self, freq, alpha, beta, N):
         super().__init__(cpll.CPllState, freq, alpha, beta, N)
+
+    @staticmethod
+    def info():
+        return "PLL C 3"
 
     # Lut.cos_array
     def process(self, pilot):

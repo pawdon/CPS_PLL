@@ -34,7 +34,7 @@ def run():
     alpha = 0.0100
     beta = 2.5000e-05
     time_measurer = timer.FunTimeMeasurer()
-    pll_loop = pll.PllNumPy1(freq=freq, alpha=alpha, beta=beta, N=N)
+    pll_loop = pll.PllC3(freq=freq, alpha=alpha, beta=beta, N=N)
 
     full = get_data(filename="pilot.csv")
     blocks = split_data(full, N)
@@ -111,7 +111,7 @@ def test_cpll():
     print("carr3", carr3)
     print("pilot", pilot)
 
-    synch = cpll.process2(pilot, carr2, carr3, synch, lut_cos, lut_sin)
+    synch = cpll.process3(pilot, carr2, carr3, synch, lut_cos, lut_sin)
 
     print("synch", synch.freq, synch.latest_theta, synch.alpha, synch.beta, synch.N)
     print("carr2", carr2)

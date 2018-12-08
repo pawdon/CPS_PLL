@@ -1,18 +1,6 @@
 import numpy as np
 import pll
-
-
-def get_data(filename):
-    return np.genfromtxt(filename, delimiter=',')
-
-
-def save_data(outputfile, data):
-    np.savetxt(outputfile, data, delimiter=',')
-
-
-def split_data(data, n):
-    split_nr = int(len(data) / n)
-    return np.split(data, split_nr)
+from utils import *
 
 
 class Corr:
@@ -48,23 +36,24 @@ class Corr:
         result1 = get_data(filename="result1.csv")
         result2 = get_data(filename="result2.csv")
 
-        if np.all(result1) == np.all(refer):
+        if np.all(result1 == refer):
             print("Whole carr2 i refer takie same")
         else:
             print("Whole_carr2 i refer NIE takie same")
 
-        if np.all(result2) == np.all(refer):
+        if np.all(result2 == refer):
             print ("Whole carr3 i refer takie same")
         else:
             print ("Whole_carr3 i refer NIE takie same")
 
     def correct_final(self):
         klasy = [pll.PllNaive]
-        numbers = [16, 8, 6]
+        numbers = [150, 16, 8, 6]
 
         for b in klasy:
             for i in numbers:
                 self.correct(b, i)
+
 
 if __name__ == "__main__":
     cor = Corr(0.4775, 0.0100, 2.5000e-05)

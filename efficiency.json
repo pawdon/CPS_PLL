@@ -1,0 +1,4 @@
+{"Algorithm info": "PLL naive", "Block length": 100, "Total time": 1.3072175979614258, "Average time": 0.00026144351959228514}
+{"Algorithm info": "PLL naive", "Block length": 150, "Total time": 1.2921617031097412, "Average time": 0.00038757099673357567}
+{"Algorithm info": "PLL C 1", "Block length": 100, "Total time": 0.10018587112426758, "Average time": 2.0037174224853516e-05}
+{"Algorithm info": "PLL C 1", "Block length": 150, "Total time": 0.07718563079833984, "Average time": 2.3151059027696413e-05}

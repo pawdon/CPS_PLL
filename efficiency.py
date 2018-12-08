@@ -2,23 +2,16 @@ import numpy as np
 import timer
 import pll
 import json
+from utils import *
 
 
-def get_data(filename):
-    return np.genfromtxt(filename, delimiter=',')
-
-
-def split_data(data, n):
-    split_nr = int(len(data) / n)
-    return np.split(data, split_nr)
-
-class effi:
-
-    def __init__(self, freq, alpha, beta):
+class Efficiency:
+    def __init__(self, freq, alpha, beta, filename="efficiency.json"):
         self.freq = freq
         self.latest_theta = 0
         self.alpha = alpha
         self.beta = beta
+        self.filename = filename
 
     def efficiency(self, classs, N):
         freq = self.freq
@@ -33,35 +26,38 @@ class effi:
         whole_carr2 = np.array([])
         whole_carr3 = np.array([])
 
-        print("START", "name of class: ", classs, "blocks: ", N )
+        print(f"START: name of class: {classs.info()}; blocks: {N}")
         for b in blocks:
             carr2, carr3 = time_measurer.run(plll.process, b)
             whole_carr2 = np.append(whole_carr2, np.array(carr2))
             whole_carr3 = np.append(whole_carr3, np.array(carr3))
 
-        data = {}
-        data['Total time'] = [time_measurer.get_total_time()]
-        data['Avarage time'] = [time_measurer.get_average_time()]
-        self.writeToJSON("test", data)
+        data = {"Algorithm info": classs.info(),
+                "Block length": n,
+                "Total time": time_measurer.get_total_time(),
+                "Average time": time_measurer.get_average_time()}
+        self.write_to_json(data)
 
     def efficiency_final(self):
-        klasy = [pll.PllNaive]
+        # clean entity
+        with open(self.filename, "w"):
+            pass
+
+        klasy = [pll.PllNaive, pll.PllC1]
 
         for b in klasy:
-            numbers = [16, 8, 5, 9]
+            numbers = [100, 150]
             for i in numbers:
                 self.efficiency(b, i)
 
-
-    def writeToJSON(self, fileName, data):
-
-        filePathNameWExt = fileName + '.json'
-        with open(filePathNameWExt, 'w') as fp:
-            json.dump(data, fp)
+    def write_to_json(self, data):
+        with open(self.filename, 'a') as f:
+            text = json.dumps(data)
+            f.write(text + "\n")
 
 
 if __name__ == "__main__":
-    ef = effi(0.4775, 0.0100, 2.5000e-05)
+    ef = Efficiency(0.4775, 0.0100, 2.5000e-05)
     ef.efficiency_final()
     print("done")
 
