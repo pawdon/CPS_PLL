@@ -134,13 +134,17 @@ CPllState_swigregister = _cpll.CPllState_swigregister
 CPllState_swigregister(CPllState)
 
 
-def process1(pilot, carr2, carr3, synch):
-    return _cpll.process1(pilot, carr2, carr3, synch)
+def process1(pilot, carr2, carr3, state):
+    return _cpll.process1(pilot, carr2, carr3, state)
 process1 = _cpll.process1
 
-def process2(pilot, carr2, carr3, synch, lut_cos, lut_sin):
-    return _cpll.process2(pilot, carr2, carr3, synch, lut_cos, lut_sin)
+def process2(pilot, carr2, carr3, state):
+    return _cpll.process2(pilot, carr2, carr3, state)
 process2 = _cpll.process2
+
+def process3(pilot, carr2, carr3, state, lut_cos, lut_sin):
+    return _cpll.process3(pilot, carr2, carr3, state, lut_cos, lut_sin)
+process3 = _cpll.process3
 # This file is compatible with both classic and new-style classes.
 
 
