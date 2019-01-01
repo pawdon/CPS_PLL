@@ -15,6 +15,7 @@ CPllState process1(double *pilot, int pilot_length, double *carr2, int carr2_len
 {
 	int n;
 	double perr;
+	
 
 	for (n = 0; n < state.N; n++)
 	{
@@ -24,7 +25,7 @@ CPllState process1(double *pilot, int pilot_length, double *carr2, int carr2_len
 		state.latest_theta += state.freq + state.alpha * perr;
 		state.freq += state.beta * perr;
 	}
-	return state;
+	return state; 
 }
 
 CPllState process2(double *pilot, int pilot_length, double *carr2, int carr2_length, double *carr3, int carr3_length, CPllState state)
