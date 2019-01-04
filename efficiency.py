@@ -21,21 +21,19 @@ class Efficiency:
 
         time_measurer = timer.FunTimeMeasurer()
         plll = classs(freq=freq, alpha=alpha, beta=beta, N=n)
-        full = get_data(filename="pilot.csv")
+        full = get_data(filename="real_pilot_256000.csv")
         blocks = split_data(full, n)
-        whole_carr2 = np.array([])
-        whole_carr3 = np.array([])
 
         print(f"START: name of class: {classs.info()}; blocks: {N}")
         for b in blocks:
-            carr2, carr3 = time_measurer.run(plll.process, b)
-            whole_carr2 = np.append(whole_carr2, np.array(carr2))
-            whole_carr3 = np.append(whole_carr3, np.array(carr3))
+            carr1, carr2, carr3 = time_measurer.run(plll.process, b)
 
+        real_time_percent = time_measurer.get_total_time() * 100 * 256000 / len(full)
         data = {"Algorithm info": classs.info(),
                 "Block length": n,
                 "Total time": time_measurer.get_total_time(),
-                "Average time": time_measurer.get_average_time()}
+                "Real time percent": real_time_percent}
+        print(data)
         self.write_to_json(data)
 
     def efficiency_final(self):
@@ -43,12 +41,13 @@ class Efficiency:
         with open(self.filename, "w"):
             pass
 
-        klasy = [pll.PllNaive, pll.PllC1]
+        pll_classes = [pll.PllNaive, pll.PllNumPy0, pll.PllNumPy1, pll.PllNumPy2, pll.PllNumPy3,
+                       pll.PllNumPy4, pll.PllNumPy5, pll.PllC1, pll.PllC2, pll.PllC3]
 
-        for b in klasy:
-            numbers = [100, 150]
+        for pll_c in pll_classes:
+            numbers = [256, 2560, 25600, 256000]
             for i in numbers:
-                self.efficiency(b, i)
+                self.efficiency(pll_c, i)
 
     def write_to_json(self, data):
         with open(self.filename, 'a') as f:
@@ -57,7 +56,7 @@ class Efficiency:
 
 
 if __name__ == "__main__":
-    ef = Efficiency(0.4775, 0.0100, 2.5000e-05)
+    ef = Efficiency(freq=2*np.pi*19/256, alpha=0.0100, beta=2.5000e-05)
     ef.efficiency_final()
     print("done")
 

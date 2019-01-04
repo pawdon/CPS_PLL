@@ -1,4 +1,40 @@
-{"Algorithm info": "PLL naive", "Block length": 100, "Total time": 1.3072175979614258, "Average time": 0.00026144351959228514}
-{"Algorithm info": "PLL naive", "Block length": 150, "Total time": 1.2921617031097412, "Average time": 0.00038757099673357567}
-{"Algorithm info": "PLL C 1", "Block length": 100, "Total time": 0.10018587112426758, "Average time": 2.0037174224853516e-05}
-{"Algorithm info": "PLL C 1", "Block length": 150, "Total time": 0.07718563079833984, "Average time": 2.3151059027696413e-05}
+{"Algorithm info": "PLL naive", "Block length": 256, "Total time": 0.6821739673614502, "Real time percent": 68.21739673614502}
+{"Algorithm info": "PLL naive", "Block length": 2560, "Total time": 0.691178560256958, "Real time percent": 69.1178560256958}
+{"Algorithm info": "PLL naive", "Block length": 25600, "Total time": 0.6991569995880127, "Real time percent": 69.91569995880127}
+{"Algorithm info": "PLL naive", "Block length": 256000, "Total time": 0.669238805770874, "Real time percent": 66.9238805770874}
+{"Algorithm info": "PLL numpy 0", "Block length": 256, "Total time": 0.43685483932495117, "Real time percent": 43.68548393249512}
+{"Algorithm info": "PLL numpy 0", "Block length": 2560, "Total time": 0.42984914779663086, "Real time percent": 42.984914779663086}
+{"Algorithm info": "PLL numpy 0", "Block length": 25600, "Total time": 0.4298834800720215, "Real time percent": 42.98834800720215}
+{"Algorithm info": "PLL numpy 0", "Block length": 256000, "Total time": 0.42190122604370117, "Real time percent": 42.19012260437012}
+{"Algorithm info": "PLL numpy 1", "Block length": 256, "Total time": 0.4617643356323242, "Real time percent": 46.17643356323242}
+{"Algorithm info": "PLL numpy 1", "Block length": 2560, "Total time": 0.47974157333374023, "Real time percent": 47.97415733337402}
+{"Algorithm info": "PLL numpy 1", "Block length": 25600, "Total time": 0.49068617820739746, "Real time percent": 49.068617820739746}
+{"Algorithm info": "PLL numpy 1", "Block length": 256000, "Total time": 0.4867267608642578, "Real time percent": 48.67267608642578}
+{"Algorithm info": "PLL numpy 2", "Block length": 256, "Total time": 1.6346278190612793, "Real time percent": 163.46278190612793}
+{"Algorithm info": "PLL numpy 2", "Block length": 2560, "Total time": 1.636624813079834, "Real time percent": 163.6624813079834}
+{"Algorithm info": "PLL numpy 2", "Block length": 25600, "Total time": 1.621661901473999, "Real time percent": 162.1661901473999}
+{"Algorithm info": "PLL numpy 2", "Block length": 256000, "Total time": 1.6535780429840088, "Real time percent": 165.35780429840088}
+{"Algorithm info": "PLL numpy 3", "Block length": 256, "Total time": 0.6352987289428711, "Real time percent": 63.52987289428711}
+{"Algorithm info": "PLL numpy 3", "Block length": 2560, "Total time": 0.646298885345459, "Real time percent": 64.6298885345459}
+{"Algorithm info": "PLL numpy 3", "Block length": 25600, "Total time": 0.778916597366333, "Real time percent": 77.8916597366333}
+{"Algorithm info": "PLL numpy 3", "Block length": 256000, "Total time": 0.6542496681213379, "Real time percent": 65.42496681213379}
+{"Algorithm info": "PLL numpy 4", "Block length": 256, "Total time": 0.926490068435669, "Real time percent": 92.6490068435669}
+{"Algorithm info": "PLL numpy 4", "Block length": 2560, "Total time": 0.9305408000946045, "Real time percent": 93.05408000946045}
+{"Algorithm info": "PLL numpy 4", "Block length": 25600, "Total time": 0.9345271587371826, "Real time percent": 93.45271587371826}
+{"Algorithm info": "PLL numpy 4", "Block length": 256000, "Total time": 0.9175729751586914, "Real time percent": 91.75729751586914}
+{"Algorithm info": "PLL numpy 5", "Block length": 256, "Total time": 1.0601930618286133, "Real time percent": 106.01930618286133}
+{"Algorithm info": "PLL numpy 5", "Block length": 2560, "Total time": 1.0322637557983398, "Real time percent": 103.22637557983398}
+{"Algorithm info": "PLL numpy 5", "Block length": 25600, "Total time": 1.0461957454681396, "Real time percent": 104.61957454681396}
+{"Algorithm info": "PLL numpy 5", "Block length": 256000, "Total time": 1.0302443504333496, "Real time percent": 103.02443504333496}
+{"Algorithm info": "PLL C 1", "Block length": 256, "Total time": 0.016954660415649414, "Real time percent": 1.6954660415649414}
+{"Algorithm info": "PLL C 1", "Block length": 2560, "Total time": 0.014959335327148438, "Real time percent": 1.4959335327148438}
+{"Algorithm info": "PLL C 1", "Block length": 25600, "Total time": 0.013963699340820312, "Real time percent": 1.3963699340820312}
+{"Algorithm info": "PLL C 1", "Block length": 256000, "Total time": 0.013962268829345703, "Real time percent": 1.3962268829345703}
+{"Algorithm info": "PLL C 2", "Block length": 256, "Total time": 0.015959501266479492, "Real time percent": 1.5959501266479492}
+{"Algorithm info": "PLL C 2", "Block length": 2560, "Total time": 0.014960289001464844, "Real time percent": 1.4960289001464844}
+{"Algorithm info": "PLL C 2", "Block length": 25600, "Total time": 0.014962196350097656, "Real time percent": 1.4962196350097656}
+{"Algorithm info": "PLL C 2", "Block length": 256000, "Total time": 0.013962984085083008, "Real time percent": 1.3962984085083008}
+{"Algorithm info": "PLL C 3", "Block length": 256, "Total time": 0.021940946578979492, "Real time percent": 2.194094657897949}
+{"Algorithm info": "PLL C 3", "Block length": 2560, "Total time": 0.01897740364074707, "Real time percent": 1.897740364074707}
+{"Algorithm info": "PLL C 3", "Block length": 25600, "Total time": 0.01795220375061035, "Real time percent": 1.7952203750610352}
+{"Algorithm info": "PLL C 3", "Block length": 256000, "Total time": 0.01795172691345215, "Real time percent": 1.7951726913452148}
