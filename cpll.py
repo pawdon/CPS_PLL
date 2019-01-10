@@ -145,6 +145,10 @@ process2 = _cpll.process2
 def process3(pilot, carr1, carr2, carr3, state, lut_cos, lut_sin):
     return _cpll.process3(pilot, carr1, carr2, carr3, state, lut_cos, lut_sin)
 process3 = _cpll.process3
+
+def process4(pilot, carr1, carr2, carr3, state, lut_cos, lut_sin):
+    return _cpll.process4(pilot, carr1, carr2, carr3, state, lut_cos, lut_sin)
+process4 = _cpll.process4
 # This file is compatible with both classic and new-style classes.
 
 

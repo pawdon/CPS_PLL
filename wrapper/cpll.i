@@ -12,6 +12,7 @@
 %}
 
 %apply (double* INPLACE_ARRAY1, int DIM1) {(double *pilot, int pilot_length)}
+%apply (double* INPLACE_ARRAY1, int DIM1) {(double *carr1, int carr1_length)}
 %apply (double* INPLACE_ARRAY1, int DIM1) {(double *carr2, int carr2_length)}
 %apply (double* INPLACE_ARRAY1, int DIM1) {(double *carr3, int carr3_length)}
 %apply (double* INPLACE_ARRAY1, int DIM1) {(double *lut_cos, int lut_cos_length)}

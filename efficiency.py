@@ -38,11 +38,10 @@ class Efficiency:
 
     def efficiency_final(self):
         # clean entity
-        with open(self.filename, "w"):
-            pass
+        # with open(self.filename, "w"):
+        #    pass
 
-        pll_classes = [pll.PllNaive, pll.PllNumPy0, pll.PllNumPy1, pll.PllNumPy2, pll.PllNumPy3,
-                       pll.PllNumPy4, pll.PllNumPy5, pll.PllC1, pll.PllC2, pll.PllC3]
+        pll_classes = [pll.PllNumPy5, pll.PllC3, pll.PllC4]
 
         for pll_c in pll_classes:
             numbers = [256, 2560, 25600, 256000]
@@ -56,7 +55,9 @@ class Efficiency:
 
 
 if __name__ == "__main__":
-    ef = Efficiency(freq=2*np.pi*19/256, alpha=0.0100, beta=2.5000e-05)
-    ef.efficiency_final()
-    print("done")
+    for i in range(10):
+        print(i)
+        ef = Efficiency(freq=2*np.pi*19/256, alpha=0.0100, beta=2.5000e-05, filename=f"results/efficiency{i}.json")
+        ef.efficiency_final()
+        print("done")
 

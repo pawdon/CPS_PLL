@@ -3,7 +3,7 @@ filename = 'efficiency.m.json';
 fid = fopen(filename, 'w');
 fclose(fid);
 
-block_lengths = [256, 2560, 25600, 256000];
+block_lengths = [256];
 init_freq = 2*pi*19/256;
 init_theta = 0;
 alpha = 0.0100;
@@ -50,6 +50,10 @@ for N=block_lengths
     fid = fopen(filename, 'a');
     fprintf(fid, '{"Algorithm info": "PLL Matlab", "Block length": %d, "Total time": %f, "Real time percent": %f}\n', N, whole_time, real_time_percent);
     fclose(fid);
+    
+    csvwrite('carr1.csv', transpose(whole_carr1))
+    csvwrite('carr2.csv', transpose(whole_carr2))
+    csvwrite('carr3.csv', transpose(whole_carr3))
 end
 
 %end
